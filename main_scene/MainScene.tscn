@@ -1,0 +1,345 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://main_scene/MainScene.gd" type="Script" id=1]
+[ext_resource path="res://sounds/finished_piano_sfx.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sounds/thot_mid.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sounds/thot_high.ogg" type="AudioStream" id=4]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_levels/2 = true
+glow_levels/3 = false
+glow_levels/4 = true
+glow_intensity = 1.15
+glow_strength = 0.96
+glow_blend_mode = 1
+glow_bicubic_upscale = true
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 50 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 50, 50 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 50, 50 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 60, 190 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id=10]
+length = 2.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PressLabel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.054902 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AudioPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="AudioPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="BackGround" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 600.0
+mouse_filter = 2
+color = Color( 0.670588, 0.635294, 0.341176, 1 )
+
+[node name="Board" type="Node2D" parent="."]
+position = Vector2( 300, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Board"]
+margin_left = -70.0
+margin_top = -190.0
+margin_right = -60.0
+margin_bottom = 190.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Board"]
+margin_left = -190.0
+margin_top = 60.0
+margin_right = 190.0
+margin_bottom = 70.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Board"]
+margin_left = -190.0
+margin_top = -70.0
+margin_right = 190.0
+margin_bottom = -60.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Board"]
+margin_left = 60.0
+margin_top = -190.0
+margin_right = 70.0
+margin_bottom = 190.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShapesContainer" type="Node2D" parent="."]
+
+[node name="WinningCross" type="Node2D" parent="."]
+position = Vector2( 300, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="WinningCrossShape" type="ColorRect" parent="WinningCross"]
+margin_left = -5.0
+margin_top = -200.0
+margin_right = 5.0
+margin_bottom = 200.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoardAreaEnter" type="Node2D" parent="."]
+
+[node name="BoxArea" type="Node2D" parent="BoardAreaEnter"]
+position = Vector2( 300, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box1" type="Area2D" parent="BoardAreaEnter/BoxArea"]
+position = Vector2( 0, -130 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/BoxArea/Box1"]
+shape = SubResource( 2 )
+
+[node name="Box2" type="Area2D" parent="BoardAreaEnter/BoxArea"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/BoxArea/Box2"]
+shape = SubResource( 3 )
+
+[node name="Box3" type="Area2D" parent="BoardAreaEnter/BoxArea"]
+position = Vector2( 0, 130 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/BoxArea/Box3"]
+shape = SubResource( 4 )
+
+[node name="AreaContainer" type="Node2D" parent="BoardAreaEnter"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area_1" type="Area2D" parent="BoardAreaEnter/AreaContainer"]
+position = Vector2( 170, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/AreaContainer/Area_1"]
+shape = SubResource( 5 )
+
+[node name="Area_2" type="Area2D" parent="BoardAreaEnter/AreaContainer"]
+position = Vector2( 300, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/AreaContainer/Area_2"]
+shape = SubResource( 5 )
+
+[node name="Area_3" type="Area2D" parent="BoardAreaEnter/AreaContainer"]
+position = Vector2( 430, 225 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardAreaEnter/AreaContainer/Area_3"]
+shape = SubResource( 5 )
+
+[node name="BoardPositionRef" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="P2" type="Position2D" parent="BoardPositionRef"]
+position = Vector2( 300, 95 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="P4" type="Position2D" parent="BoardPositionRef"]
+position = Vector2( 170, 225 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="P5" type="Position2D" parent="BoardPositionRef"]
+position = Vector2( 300, 225 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="P6" type="Position2D" parent="BoardPositionRef"]
+position = Vector2( 430, 225 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="P8" type="Position2D" parent="BoardPositionRef"]
+position = Vector2( 300, 355 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="PositionCenter" type="Position2D" parent="."]
+visible = false
+position = Vector2( 300, 225 )
+__meta__ = {
+"_gizmo_extents_": 60.0
+}
+
+[node name="Position2D" type="Position2D" parent="."]
+visible = false
+position = Vector2( 300, 225 )
+__meta__ = {
+"_gizmo_extents_": 298.7
+}
+
+[node name="Indicator" type="Node2D" parent="."]
+
+[node name="RedGlow" type="ColorRect" parent="Indicator"]
+material = SubResource( 6 )
+margin_left = 40.0
+margin_top = 155.0
+margin_right = 51.0
+margin_bottom = 295.0
+
+[node name="GreenGlow" type="ColorRect" parent="Indicator"]
+material = SubResource( 6 )
+margin_left = 550.0
+margin_top = 155.0
+margin_right = 561.0
+margin_bottom = 295.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverPopup" type="Node2D" parent="."]
+position = Vector2( 205, 455 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GameOverPanel" type="Panel" parent="GameOverPopup"]
+margin_right = 204.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 9 )
+
+[node name="GameOverText" type="Label" parent="GameOverPopup"]
+margin_left = 40.0
+margin_top = 15.0
+margin_right = 156.0
+margin_bottom = 29.0
+text = "== GAME OVER =="
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerResultText" type="Label" parent="GameOverPopup"]
+margin_left = 40.0
+margin_top = 35.0
+margin_right = 156.0
+margin_bottom = 49.0
+text = "RED WON"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressLabel" type="Label" parent="GameOverPopup"]
+margin_left = 20.0
+margin_top = 65.0
+margin_right = 188.0
+margin_bottom = 79.0
+text = "press 'Spacebar' to restart'"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverPopup"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 10 )
+
+[connection signal="mouse_entered" from="BoardAreaEnter/BoxArea/Box1" to="." method="_on_Box1_mouse_entered"]
+[connection signal="mouse_exited" from="BoardAreaEnter/BoxArea/Box1" to="." method="_on_Box1_mouse_exited"]
+[connection signal="mouse_entered" from="BoardAreaEnter/BoxArea/Box2" to="." method="_on_Box2_mouse_entered"]
+[connection signal="mouse_exited" from="BoardAreaEnter/BoxArea/Box2" to="." method="_on_Box2_mouse_exited"]
+[connection signal="mouse_entered" from="BoardAreaEnter/BoxArea/Box3" to="." method="_on_Box3_mouse_entered"]
+[connection signal="mouse_exited" from="BoardAreaEnter/BoxArea/Box3" to="." method="_on_Box3_mouse_exited"]
+[connection signal="mouse_entered" from="BoardAreaEnter/AreaContainer/Area_1" to="." method="_on_Area_1_mouse_entered"]
+[connection signal="mouse_entered" from="BoardAreaEnter/AreaContainer/Area_2" to="." method="_on_Area_2_mouse_entered"]
+[connection signal="mouse_entered" from="BoardAreaEnter/AreaContainer/Area_3" to="." method="_on_Area_3_mouse_entered"]

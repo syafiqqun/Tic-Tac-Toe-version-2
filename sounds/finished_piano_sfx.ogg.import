@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/finished_piano_sfx.ogg-7eb079c1441eee6e93a443568fa95e9f.oggstr"
+
+[deps]
+
+source_file="res://sounds/finished_piano_sfx.ogg"
+dest_files=[ "res://.import/finished_piano_sfx.ogg-7eb079c1441eee6e93a443568fa95e9f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

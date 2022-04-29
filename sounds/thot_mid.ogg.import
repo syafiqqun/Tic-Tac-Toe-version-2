@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thot_mid.ogg-e3fd5d67ab057d56a50e88d47a19305c.oggstr"
+
+[deps]
+
+source_file="res://sounds/thot_mid.ogg"
+dest_files=[ "res://.import/thot_mid.ogg-e3fd5d67ab057d56a50e88d47a19305c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

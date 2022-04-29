@@ -1,0 +1,17 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=2]
+
+[sub_resource type="AudioEffectPhaser" id=1]
+resource_name = "Phaser"
+range_max_hz = 5768.49
+
+[sub_resource type="AudioEffectNotchFilter" id=3]
+resource_name = "NotchFilter"
+resonance = 0.34
+gain = 2.61
+
+[resource]
+bus/0/volume_db = -0.328256
+bus/0/effect/0/effect = SubResource( 1 )
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource( 3 )
+bus/0/effect/1/enabled = true
